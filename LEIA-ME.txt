@@ -1,0 +1,11 @@
+﻿TREINO CALISTENIA V1 - baseado no Treino Forte V2 (variacoes por nivel e lastro por sexo)
+
+Produzido e Desenvolvido Por
+Ivan Guilherme S. Carvalho ®
+
+ENVIE index.html, manifest.webmanifest, sw.js e os 3 icones PNG para o GitHub (nao envie firebase-config.js).
+Use um repositorio novo, diferente do Treino Forte. Os dados do app (perfil, medidas e treinos marcados) ficam separados dos do Treino Forte.
+Para o login, coloque no mesmo repositorio o seu firebase-config.js.
+Abra o app duas vezes (com internet). Na aba Sobre deve aparecer "variacoes por nivel e lastro por sexo".
+
+Perfil > Sexo: Masculino mantem o lastro sugerido; Feminino recalcula o lastro com fatores menores.

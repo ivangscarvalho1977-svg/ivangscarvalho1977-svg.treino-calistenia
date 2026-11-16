@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#000000">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<script>window.__cfgErr='';window.addEventListener('error',function(e){if((e.filename||'').indexOf('firebase-config')>-1)window.__cfgErr=e.message||'erro de sintaxe'});</script>
+<script src="firebase-config.js" onerror="window.__cfgMiss=1"></script>
+<title>Treino Calistenia</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#000000;--card:#111317;--tx:#f1f3f5;--mu:#9aa3b2;--ac:#ff7a2f;--ln:#262a33;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#000000;--card:#111317;--tx:#f1f3f5;--mu:#9aa3b2;--ac:#ff7a2f;--ln:#262a33;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#000000;--card:#111317;--tx:#f1f3f5;--mu:#9aa3b2;--ac:#ff7a2f;--ln:#262a33;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.4 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;padding-bottom:84px}
+header{padding:16px 16px 8px}
+h1{margin:0;font-size:22px}
+h2{font-size:17px;margin:0 0 8px}
+.sub{color:var(--mu);font-size:13px}
+.wrap{padding:0 12px;max-width:640px;margin:0 auto}
+.card{background:var(--card);border:1px solid var(--ln);border-radius:14px;padding:12px;margin:10px 0}
+.row{display:flex;gap:8px;flex-wrap:wrap}
+.pill{flex:1;min-width:44px;text-align:center;padding:10px 4px;border-radius:10px;border:1px solid var(--ln);background:var(--card);color:var(--tx);font-weight:600;font-size:14px}
+.pill.on{background:var(--ac);color:#fff;border-color:var(--ac)}
+.seg{display:flex;gap:6px;margin:8px 0}
+.seg button{flex:1;padding:12px;border-radius:12px;border:1px solid var(--ln);background:var(--card);color:var(--tx);font-weight:700;font-size:15px}
+.seg button.on{background:var(--ac);color:#fff;border-color:var(--ac)}
+.ex{display:flex;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid var(--ln)}
+.ex:last-child{border:0}
+.ex input[type=checkbox]{width:26px;height:26px;accent-color:var(--ac);flex:none}
+.ex .n{font-weight:600}
+.ex.ok .n{text-decoration:line-through;color:var(--mu)}
+a.btn,button.btn{display:inline-block;background:var(--ac);color:#fff;text-decoration:none;border:0;border-radius:10px;padding:10px 14px;font-weight:700;font-size:14px}
+a.alt{background:transparent;color:var(--ac);border:1px solid var(--ac)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+label{font-size:12px;color:var(--mu);display:block}
+input,select{width:100%;padding:10px;border-radius:10px;border:1px solid var(--ln);background:var(--bg);color:var(--tx);font-size:16px}
+.kpi{background:var(--bg);border-radius:10px;padding:10px}
+.kpi b{display:block;font-size:20px}
+table{width:100%;border-collapse:collapse;font-size:13px}
+td,th{padding:6px 4px;border-bottom:1px solid var(--ln);text-align:right}
+td:first-child,th:first-child{text-align:left}
+.up{color:#2f9e44}.dn{color:#e03131}
+nav{position:fixed;left:0;right:0;bottom:0;display:flex;background:var(--card);border-top:1px solid var(--ln);padding-bottom:env(safe-area-inset-bottom,0px)}
+nav button{flex:1;padding:12px 4px;border:0;background:none;color:var(--mu);font-weight:700;font-size:13px}
+nav button.on{color:var(--ac)}
+.scroll{overflow-x:auto}
+.hide{display:none}
+small{color:var(--mu)}
+#mini{position:fixed;left:0;right:0;z-index:5;background:var(--card);border-top:1px solid var(--ln);display:flex;gap:8px;padding:6px 8px;align-items:center}
+#mini.hide{display:none}#mini .mi{flex:1;min-width:0}#mini iframe{border-radius:8px;display:block}
+#mtitle{font-size:13px;font-weight:600;margin-bottom:6px;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+#mFb{color:var(--ac);font-size:12px;display:inline-block;margin-top:4px}#mFb.hide{display:none}
+.hrow{display:flex;align-items:center;gap:12px;justify-content:flex-start}
+#lg{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:20;display:flex;align-items:center;justify-content:center;padding:16px}
+#lg.hide{display:none}.lgbox{width:100%;max-width:380px;max-height:90vh;overflow:auto;margin:0}
+.tabs{display:flex;gap:6px;margin:8px 0}.tabs button{flex:1;padding:10px;border-radius:10px;border:1px solid var(--ln);background:var(--card);color:var(--tx);font-weight:700}
+.tabs button.on{background:var(--ac);color:#fff;border-color:var(--ac)}
+#lgMsg{font-size:13px;margin-top:8px;min-height:18px}.err{color:#e03131}.ok2{color:#2f9e44}
+.ld{font-size:12px;color:var(--ac);margin-top:2px}
+</style>
+</head>
+<body>
+<header class="wrap"><div class="hrow"><h1>🤸 Treino Calistenia</h1><button class="btn" id="lgBtn">Login</button></div><div class="sub">Calistenia de segunda a sábado · massa ou definição</div></header>
+<div class="wrap">
+
+<section id="t-treino">
+  <div class="seg"><button id="mMassa">Ganho de massa</button><button id="mDef">Definição</button></div>
+  <div class="row" id="days"></div>
+  <div class="card"><h2 id="dTitle"></h2><div class="sub" id="dInfo"></div><div id="exs"></div></div>
+  <div class="card hide" id="ajuste"></div>
+  <div class="card" id="final"></div>
+  <div class="card" id="cardio"></div>
+  <div class="card"><h2>🎧 Hits para Treinar</h2><div id="mus"></div></div>
+  <div class="card sub" id="est"></div>
+</section>
+
+<section id="t-perfil" class="hide">
+  <div class="card"><h2>Dados pessoais</h2>
+    <div class="grid">
+      <div><label>Sexo</label><select id="sexo"><option value="m">Masculino</option><option value="f">Feminino</option></select></div>
+      <div><label>Idade (anos)</label><input id="idade" type="number" inputmode="decimal"></div>
+      <div><label>Altura (cm)</label><input id="altura" type="number" inputmode="decimal"></div>
+      <div><label>Peso (kg)</label><input id="peso" type="number" inputmode="decimal" step="0.1"></div>
+    </div>
+    <label style="margin-top:8px">Nível de atividade fora do treino</label>
+    <select id="ativ"><option value="1.375">Leve (treina 1–3x/sem)</option><option value="1.55" selected>Moderado (3–5x/sem)</option><option value="1.725">Intenso (6x/sem)</option><option value="1.9">Muito intenso</option></select>
+    <label style="margin-top:8px">Nível de treino</label>
+    <select id="nivel"><option value="ini">Iniciante</option><option value="med" selected>Médio</option><option value="avc">Avançado</option></select>
+  </div>
+  <div class="card"><h2>Medidas (cm)</h2>
+    <div class="grid" id="meds"></div>
+    <small>Meça sempre no mesmo horário, com fita relaxada. Pescoço, cintura (altura do umbigo) e quadril são usados no cálculo de gordura corporal.</small>
+    <div style="margin-top:10px"><button class="btn" id="save">Salvar medição de hoje</button></div>
+  </div>
+  <div class="card"><h2>⚖️ Simetria (direito x esquerdo)</h2><div id="sim"></div></div>
+  <div class="card"><h2>Resultados e metas</h2><div id="res" class="grid"></div><div id="meta" class="sub" style="margin-top:8px"></div></div>
+</section>
+
+<section id="t-evol" class="hide">
+  <div class="card"><h2>Evolução</h2><div class="scroll" id="evol"></div><div style="margin-top:10px"><button class="btn alt" style="background:none" id="clr">Apagar histórico</button></div></div>
+  <div class="card" id="metaIdeal"></div>
+</section>
+
+<section id="t-sobre" class="hide">
+  <div class="card"><h2>Base científica</h2><div class="sub">Versão 1.0 · variações por nível e lastro por sexo</div>
+  <p>A estrutura segue princípios amplamente ensinados por pesquisadores e treinadores de referência: volume semanal de 10–20 séries por grupo muscular, treino próximo da falha, sobrecarga progressiva e frequência de 2x por grupo (Brad Schoenfeld, Mike Israetel, Eric Helms, Jeff Nippard, Layne Norton). Na calistenia a sobrecarga vem de variações mais difíceis (alavanca), mais repetições, tempo sob tensão e lastro; treinar próximo da falha com cargas leves também gera hipertrofia (Schoenfeld et al., 2017).</p>
+  <p><b>Massa:</b> 5–12 reps em variações difíceis, 90–120 s de descanso, leve superávit calórico. <b>Definição:</b> 12–20 reps, 45–60 s de descanso, déficit moderado, proteína alta e finalizador de cardio.</p>
+  <p><b>Equipamentos usados:</b> barra fixa, paralelas, banco, chão e parede. Opcionais: elástico (para as variações mais fáceis) e mochila, colete ou halteres (para lastro). Na parada de mão e nas negativas, use a parede ou peça ajuda a alguém. Aqueça punhos e ombros antes de treinar.</p><p>Os vídeos abrem a busca do YouTube pelo exercício; escolha um canal de sua confiança. Os cálculos são estimativas (Mifflin-St Jeor e método da Marinha dos EUA) e não substituem avaliação de médico, nutricionista ou profissional de educação física. Se sentir dor, pare o exercício.</p></div>
+  <div class="card"><h2>Como calculamos nível, variação, lastro e metas</h2>
+  <p><b>Nível:</b> Iniciante (4 exercícios, 3 séries, repetições um pouco mais altas e variações mais fáceis), Médio (treino completo na variação padrão) e Avançado (variações mais difíceis, +1 série nos 2 primeiros exercícios e drop-set nos demais).</p>
+  <p><b>Lastro:</b> no nível Avançado, alguns exercícios mostram um lastro opcional calculado como porcentagem do seu peso corporal (por exemplo, 10% na barra fixa e nos mergulhos). O valor é ajustado pela proporção de massa magra, calculada pelo método da Marinha dos EUA. Para o sexo feminino, o lastro usa fatores menores (cerca de 55–60% na parte superior do corpo e 70% na inferior) e uma referência própria de composição corporal; para o masculino, nada muda. Quando suas medidas (ou a massa magra) crescem na aba Evolução, o lastro sugerido sobe. São estimativas iniciais: comece mais leve, mantenha a técnica e deixe 1–3 repetições em reserva.</p>
+  <p><b>Metas:</b> gordura e massa magra pelo método da Marinha dos EUA (pescoço, cintura e quadril), índice de massa livre de gordura (FFMI) e ritmos de ganho típicos por nível. Os limites de gordura por idade seguem o padrão da Marinha dos EUA.</p></div>
+  <div class="card" style="text-align:center;padding:18px 12px">
+    <div class="sub">Produzido e Desenvolvido Por</div>
+    <div style="font-size:19px;font-weight:700;margin-top:6px">Ivan Guilherme S. Carvalho<sup style="color:var(--ac);font-size:.75em;margin-left:3px">®</sup></div>
+  </div>
+</section>
+</div>
+<div id="lg" class="hide"><div class="card lgbox">
+  <div class="row" style="justify-content:space-between;align-items:center"><h2 id="lgTitle" style="margin:0">Login</h2><button class="btn alt" style="background:none;padding:6px 12px" id="lgX">✕</button></div>
+  <div id="lgSetup" class="hide sub" style="margin-top:8px">O login ainda não foi configurado neste app. Preencha o arquivo <b>firebase-config.js</b> (passo a passo no LEIA-ME) e envie ao GitHub.<br><b id="lgDiag"></b></div>
+  <div id="lgForm">
+    <div class="tabs"><button id="tIn" class="on">Entrar</button><button id="tNew">Criar conta</button></div>
+    <div id="lgNickBox" class="hide"><label>Apelido (nome de exibição)</label><input id="lgNick" autocomplete="nickname" placeholder="ex.: João"></div>
+    <label id="lgUserLbl" style="margin-top:8px">E-mail ou usuário</label><input id="lgUser" type="text" autocomplete="username" autocapitalize="none" placeholder="seu@gmail.com">
+    <label style="margin-top:8px">Senha</label><input id="lgPass" type="password" autocomplete="current-password">
+    <div class="sub" id="lgRule" style="margin-top:6px">Senha: mínimo 8 caracteres, com letra maiúscula, minúscula, número e caractere especial (ex.: ! @ # $).</div>
+    <div style="margin-top:10px"><button class="btn" id="lgGo" style="width:100%">Entrar</button></div>
+    <div id="lgForgotBox" style="margin-top:8px;text-align:center"><button class="btn alt" style="background:none;padding:6px 12px" id="lgForgot">Esqueci minha senha</button></div>
+    <div class="sub" style="text-align:center;margin:10px 0">ou</div>
+    <button class="btn alt" style="background:none;width:100%" id="lgGoogle">Conectar-se com a conta do Google</button>
+  </div>
+  <div id="lgIn" class="hide">
+    <p>Conectado como <b id="lgName"></b></p>
+    <div class="sub" id="lgSync">Sincronização ativa.</div>
+    <div style="margin-top:10px"><button class="btn alt" style="background:none" id="lgOut">Sair</button></div>
+    <p class="sub">Ao sair, os dados continuam neste aparelho, mas deixam de ser sincronizados.</p>
+    <div style="border-top:1px solid var(--ln);margin-top:12px;padding-top:12px">
+      <button class="btn" style="background:#e03131" id="lgDelBtn">Excluir minha conta</button>
+      <div id="lgDel" class="hide" style="margin-top:10px">
+        <div class="sub"><b>Atenção:</b> isso apaga a sua conta e todos os dados salvos na nuvem (perfil, medidas, evolução e marcações). Não dá para desfazer.</div>
+        <div id="lgDelPw" style="margin-top:8px"><label>Digite sua senha para confirmar</label><input id="lgDelPass" type="password" autocomplete="current-password"></div>
+        <div id="lgDelG" class="hide sub" style="margin-top:8px">Você vai confirmar com a sua conta do Google.</div>
+        <label style="display:flex;gap:8px;align-items:center;margin-top:8px;font-size:13px;color:var(--tx)"><input type="checkbox" id="lgDelLocal" style="width:20px;height:20px;flex:none"> Apagar também os dados deste aparelho</label>
+        <div class="row" style="margin-top:10px"><button class="btn" style="background:#e03131" id="lgDelGo">Excluir definitivamente</button><button class="btn alt" style="background:none" id="lgDelNo">Cancelar</button></div>
+      </div>
+    </div>
+  </div>
+  <div id="lgMsg"></div>
+</div></div>
+<div id="mini" class="hide"><div id="mplayer"></div><div class="mi"><div id="mtitle"></div><div class="row"><button class="btn" id="mNext">⏭ Aleatório</button><button class="btn alt" style="background:none" id="mClose">✕</button></div><a id="mFb" class="hide" target="_blank" rel="noopener">Abrir no YouTube</a></div></div>
+<nav id="nav"><button data-t="treino" class="on">🏋️ Treino</button><button data-t="perfil">📏 Perfil</button><button data-t="evol">📈 Evolução</button><button data-t="sobre">ℹ️ Sobre</button></nav>
+
+<script>
+const $=id=>document.getElementById(id);
+const NS='cal_';
+const LS={getItem:k=>localStorage.getItem(NS+k),setItem:(k,v)=>localStorage.setItem(NS+k,v),removeItem:k=>localStorage.removeItem(NS+k)};
+const L=(k,d)=>{try{const v=JSON.parse(LS.getItem(k));return v==null?d:v}catch(e){return d}};
+const P=(k,v)=>{try{const n=JSON.stringify(v);if(LS.getItem(k)===n)return;LS.setItem(k,n);if(typeof syncHook==='function')syncHook(k)}catch(e){}};
+const HIIT='https://www.youtube.com/channel/UChfVp8iHZyEi06A7-suW71g/search?query=HIIT';
+const yt=q=>'https://www.youtube.com/results?search_query='+encodeURIComponent(q);
+const sp=q=>'https://open.spotify.com/search/'+encodeURIComponent(q);
+// [nome, série massa, série definição]
+const D=[
+{d:"Seg",t:"Empurrar (peito + tríceps + ombros)",m:"Tiësto - The Business",x:[["Flexão de braço","4x8-12","3x15-20"],["Mergulho nas paralelas (tronco inclinado, foco peito)","4x6-10","3xfalha"],["Flexão declinada (pés no banco)","3x8-12","3x12-15"],["Flexão pike (foco ombros)","3x8-12","3x12-15"],["Flexão diamante (foco tríceps)","3x8-12","3x12-15"],["Mergulho no banco (tríceps)","3x10-15","3x15-20"]]},
+{d:"Ter",t:"Puxar (costas + bíceps)",m:"Eminem - Till I Collapse",x:[["Barra fixa pegada pronada","4x5-8","3xfalha"],["Barra fixa supinada (chin-up)","4x6-10","3xfalha"],["Remada invertida (barra baixa ou mesa firme)","4x8-12","3x12-15"],["Retração escapular na barra fixa","3x8-12","3x12-15"],["Remada invertida supinada (foco bíceps)","3x8-12","3x12-15"],["Superman (extensão lombar no chão)","3x12-15","3x15-20"]]},
+{d:"Qua",t:"Pernas (quadríceps)",m:"Kanye West - Stronger",x:[["Agachamento livre (peso do corpo)","4x12-20","3x20-25"],["Agachamento búlgaro (pé no banco)","4x8-12 cada","3x12-15 cada"],["Avanço alternado (afundo)","3x10-15 cada","3x15-20 cada"],["Agachamento isométrico na parede (cadeirinha)","3x45-60 s","3x30-45 s"],["Panturrilha em pé unilateral (degrau)","4x12-20 cada","4x15-25 cada"]]},
+{d:"Qui",t:"Ombros + Abdômen",m:"Swedish House Mafia - Don’t You Worry Child",x:[["Flexão pike com pés no banco","4x6-10","3x10-15"],["Isometria de pike (quadril alto, pés no banco)","4x20-40 s","3x20-30 s"],["Elevação de pernas na barra fixa","3x8-12","3x12-15"],["Prancha frontal","3x40-60 s","3x30-45 s"],["Abdominal canivete (V-up)","3x10-15","3x15-20"],["Prancha lateral","3x30-45 s cada","3x25-40 s cada"]]},
+{d:"Sex",t:"Superiores (peito + costas)",m:"Alok - Hear Me Now",x:[["Barra fixa pegada aberta","4x5-8","3xfalha"],["Flexão com pegada aberta","4x8-12","3x15-20"],["Mergulho nas paralelas (tronco ereto, foco tríceps)","4x6-10","3xfalha"],["Remada invertida com pausa no topo","3x8-12","3x12-15"],["Flexão com uma mão no banco (assimétrica)","3x8-12 cada","3x12-15 cada"],["Chin-up excêntrico (descida de 5 s)","3x4-6","3x6-8"]]},
+{d:"Sáb",t:"Posterior + Glúteos",m:"Avicii - Levels",x:[["Hip thrust no banco (peso do corpo)","4x12-15","3x15-20"],["Stiff unilateral (peso do corpo)","3x8-12 cada","3x12-15 cada"],["Agachamento sumô (peso do corpo)","3x15-20","3x20-25"],["Step-up no banco","3x10-12 cada","3x12-15 cada"],["Panturrilha em pé (duas pernas, degrau)","4x15-25","4x20-30"],["Abdominal infra (elevação de quadril no chão)","3x12-15","3x15-20"]]}
+];
+// texto das séries: tempo (s) ou repetições
+function schTxt(sc){return sc+(/\d\s*s(\s|$)/.test(sc)?' séries x segundos':' séries x reps')}
+const CAMPOS=[['pescoco','Pescoço'],['ombros','Ombros'],['peito','Peito'],['cintura','Cintura'],['abdomen','Abdômen'],['quadril','Quadril'],['bicepsD','Bíceps dir.'],['bicepsE','Bíceps esq.'],['tricepsD','Tríceps dir.'],['tricepsE','Tríceps esq.'],['antebracoD','Antebraço dir.'],['antebracoE','Antebraço esq.'],['coxaD','Coxa dir.'],['coxaE','Coxa esq.'],['pantD','Panturrilha dir.'],['pantE','Panturrilha esq.']];
+let mode=L('mode','massa');
+let day=Math.min(Math.max(new Date().getDay()-1,0),5);
+const wk=Math.floor((Date.now()-3*864e5)/(7*864e5));
+let done=L('done',{});
+const isDark=()=>{};
+
+function renderDays(){
+  $('days').innerHTML=D.map((x,i)=>`<button class="pill ${i==day?'on':''}" data-i="${i}">${x.d}</button>`).join('');
+  $('days').querySelectorAll('button').forEach(b=>b.onclick=()=>{day=+b.dataset.i;renderTreino()});
+}
+const HITS=[
+['gf_yaydng4E','28 min de CARDIO EM CASA para queimar 740 calorias'],
+['07jQ_9me0WA','TREINO HIIT ALTA INTENSIDADE, queima de gordura, sem equipamentos'],
+['sKp2aCi55VA','Treino COMBINADO super intenso, 600+ calorias, sem equipamentos'],
+['MQ58sVnLeE8','20 min CARDIO para EMAGRECER em casa'],
+['eDdis7p5PRI','Desafio CARDIO HIIT combinado COMPLETO, 41 min'],
+['3Hj4wZk97JM','30 min de CARDIO HIIT (corpo inteiro)'],
+['g3ZNepK3gOY','30 min Cardio HIIT para gastar + de 500 calorias'],
+['_WdUkEriE20','20 min Cardio HIIT para gastar 435 calorias - INTENSO']];
+let hi=Math.floor(Math.random()*HITS.length);
+function nextHit(){hi=rnd(HITS.length,hi);savePl();renderFinal()}
+function renderFinal(){
+  const v=HITS[hi];
+  $('final').innerHTML=`<h2>🔥 Finalização com Cardio</h2><div class="sub">${mode=='def'?'15–20 min de HIT (30 s forte / 60 s leve) com pular corda, burpees ou polichinelos, ou corrida/caminhada rápida na rua.':'10–15 min de cardio leve a moderado (caminhada rápida, pular corda ou HIT curto) para o coração, sem atrapalhar a recuperação.'}</div><div style="margin:8px 0;font-weight:600">${v[1]}</div><div class="row"><button class="btn" id="hY">▶ Vídeo HIT</button><button class="btn alt" style="background:none" id="hN">🔀 Outro HIT</button></div><small>Toca aqui dentro do app. Vídeos do canal Renan Gonçalves - Treino em casa. <a href="${HIIT}" target="_blank" rel="noopener" style="color:var(--ac)">Ver mais no canal</a></small>`;
+  $('hY').onclick=()=>{playHit(hi);hi=rnd(HITS.length,hi);savePl();renderFinal()};
+  $('hN').onclick=nextHit;
+}
+function renderTreino(){
+  $('mMassa').className=mode=='massa'?'on':'';$('mDef').className=mode=='def'?'on':'';
+  renderDays();
+  const w=D[day];
+  $('dTitle').textContent=w.d+' · '+w.t;
+  $('dInfo').textContent=infoTxt();
+  $('exs').innerHTML=lvlList(w.x).map((e,i)=>{
+    const k=[wk,mode,day,i].join('|');
+    return `<div class="ex ${done[k]?'ok':''}"><input type="checkbox" data-k="${k}" ${done[k]?'checked':''}><div style="flex:1"><div class="n">${e[0]}</div><small>${schTxt(lvlScheme(mode=='massa'?e[1]:e[2],i))}</small><div class="ld">${loadTxt(e[0])}</div></div><a class="btn alt" target="_blank" rel="noopener" href="${yt('como fazer '+e[0]+' calistenia execução correta')}">▶ Vídeo</a></div>`}).join('');
+  $('exs').querySelectorAll('input').forEach(c=>c.onchange=()=>{done[c.dataset.k]=c.checked;P('done',done);c.closest('.ex').classList.toggle('ok',c.checked)});
+  renderFinal();
+  $('cardio').innerHTML=`<h2>📈 Progressão</h2><div class="sub">${mode=='massa'?'Quando completar o topo das repetições em todas as séries, passe para uma variação mais difícil (ou adicione 1–2 kg de lastro).':'Mantenha a variação e tente fazer mais repetições ou descansar menos a cada semana; passe para uma variação mais difícil quando completar o topo das repetições.'}</div>`;
+  renderMus();renderAj();
+  const p=L('perfil',null),kg=p&&+p.peso;
+  $('est').textContent=kg?`Gasto estimado: ≈ ${Math.round(6*kg)} kcal em 60 min de calistenia`+(mode=='def'?` + ≈ ${Math.round(8*kg/3)} kcal no cardio de 20 min.`:'.'):'Preencha seu peso na aba Perfil para ver o gasto calórico estimado.';
+}
+const SONGS=[
+['nCg3ufihKyU','Tiësto - The Business'],['_Yhyp-_hX2s','Eminem - Lose Yourself'],['ytQ5CYE1VZw','Eminem - Till I Collapse'],['PsO6ZnUZI0g','Kanye West - Stronger'],
+['btPJPFnesV4','Survivor - Eye of the Tiger'],['v2AC41dglnM','AC/DC - Thunderstruck'],['CD-E-LDc384','Metallica - Enter Sandman'],['xnKhsTXoKCI','Metallica - Master of Puppets'],
+['bWXazVhlyxQ','Rage Against the Machine - Killing in the Name'],['JRfuAukYTKg','David Guetta - Titanium'],['_ovdm2yX4MA','Avicii - Levels'],['IcrbM1l_BoI','Avicii - Wake Me Up'],
+['1y6smkh6c-0','Swedish House Mafia - Don’t You Worry Child'],['7wtfhZwyrcc','Imagine Dragons - Believer'],['ktvTqknDobU','Imagine Dragons - Radioactive'],['gCYcHz2k5x0','Martin Garrix - Animals'],
+['YqeW9_5kURI','Major Lazer - Lean On'],['4NRXx6U8ABQ','The Weeknd - Blinding Lights'],['LYU-8IFcDPw','Linkin Park - Faint'],['tvTRZJ-4EyI','Kendrick Lamar - HUMBLE.'],
+['6ONRf7h3Mdk','Travis Scott - SICKO MODE'],['gAjR4_CbPpQ','Daft Punk - Harder, Better, Faster, Stronger'],['wmin5WkOuPw','The Prodigy - Firestarter'],['o1tj2zJ2Wvg','Guns N’ Roses - Welcome to the Jungle'],
+['HgzGwKwLmgM','Queen - Don’t Stop Me Now'],['j5-yKhDd64s','Eminem - Not Afraid'],['L53gjP-TtGE','Kanye West - Power'],['5qm8PH4xAss','50 Cent - In Da Club'],
+['YJVmu6yttiw','Skrillex - Bangarang'],['IxxstCcJlsc','Zedd - Clarity'],['hHUbLv4ThOo','Pitbull - Timber'],['9Ht5RZpzPqw','blink-182 - All The Small Things']];
+let ms=0,curS=0,curH=0,YP=null,kind='',errN=0,curP=null;
+function rnd(n,ex){let r;do{r=Math.floor(Math.random()*n)}while(r===ex&&n>1);return r}
+function pos(){const n=$('nav'),m=$('mini');m.style.bottom=n.offsetHeight+'px';document.body.style.paddingBottom=(n.offsetHeight+(m.classList.contains('hide')?0:m.offsetHeight)+12)+'px'}
+function loadYT(cb){
+  if(window.YT&&YT.Player){cb();return}
+  window.onYouTubeIframeAPIReady=cb;
+  if(!document.getElementById('ytapi')){const t=document.createElement('script');t.id='ytapi';t.src='https://www.youtube.com/iframe_api';document.head.appendChild(t)}
+}
+function onErr(){
+  if(kind==='music'&&errN<4){errN++;playSong(rnd(SONGS.length,curS),true);return}
+  $('mtitle').textContent='⚠️ Este vídeo não pode tocar aqui.';$('mFb').href=curP.fb;$('mFb').classList.remove('hide');pos();
+}
+function play(id,title,k,fb){
+  kind=k;curP={id,title,fb};
+  $('mini').classList.remove('hide');$('mtitle').textContent='▶ '+title;$('mFb').classList.add('hide');pos();
+  loadYT(()=>{
+    if(YP&&YP.loadVideoById){YP.loadVideoById(id)}
+    else if(!YP){YP=new YT.Player('mplayer',{width:200,height:113,videoId:id,playerVars:{playsinline:1,rel:0,autoplay:1},events:{onReady:e=>{try{e.target.loadVideoById(curP.id);e.target.playVideo()}catch(x){}},onStateChange:e=>{if(e.data===0&&kind==='music')playSong(rnd(SONGS.length,curS),false)},onError:onErr}})}
+  });
+  setTimeout(pos,300);
+}
+function playSong(i,fromErr){if(!fromErr)errN=0;curS=i;play(SONGS[i][0],SONGS[i][1],'music',yt(SONGS[i][1]+' official music video'))}
+function playHit(i){curH=i;play(HITS[i][0],HITS[i][1],'hit','https://www.youtube.com/watch?v='+HITS[i][0])}
+// ===== Nível, cargas e metas =====
+const NIVN=()=>{const e=$('nivel');return e&&e.value?e.value:'med'};
+const isNum=v=>typeof v==='number'&&isFinite(v)&&v>0;
+function lvlList(x){return NIVN()==='ini'?x.slice(0,4):x}
+function lvlScheme(sc,i){
+  const lv=NIVN();if(lv==='med')return sc;
+  if(/falha/.test(sc)){const n=+sc.split('x')[0];return lv==='ini'?'3x6-10 (sem ir à falha)':(n+1)+'xfalha'}
+  const m=sc.match(/^(\d+)x(\d+)(?:-(\d+))?(.*)$/);if(!m)return sc;
+  const N=+m[1],a=+m[2],b=m[3]?+m[3]:null,rest=m[4]||'',seg=/^\s*s/.test(rest);
+  if(lv==='ini'){
+    const n=Math.min(3,N);
+    if(seg){const a2=Math.max(a-10,10),b2=b?Math.max(b-10,a2+5):null;return n+'x'+a2+(b2?'-'+b2:'')+rest}
+    const a2=a>=15?a:Math.min(a+2,15),b2=b?Math.min(b+2,Math.max(15,b)):null;
+    return n+'x'+a2+(b2&&b2>a2?'-'+b2:'')+rest}
+  return (i<2?N+1:N)+'x'+a+(b?'-'+b:'')+rest+(i>=2&&!seg?' + drop-set (variação mais fácil)':'');
+}
+function infoTxt(){
+  const lv=NIVN(),m=mode=='massa';
+  if(lv==='ini')return m?'Iniciante · 4 exercícios, 3 séries · variações mais fáceis e foco na técnica · descanso 60–90 s':'Iniciante · 4 exercícios, 3 séries · variações mais fáceis e foco na técnica · descanso 45–60 s';
+  if(lv==='avc')return m?'Avançado · variações mais difíceis, +1 série nos 2 primeiros e drop-set nos demais · descanso 90–120 s':'Avançado · variações mais difíceis, +1 série nos 2 primeiros e drop-set nos demais · descanso 30–45 s';
+  return m?'Foco em progressão de variações e tempo sob tensão · descanso 90–120 s':'Foco em densidade e gasto calórico · descanso 45–60 s';
+}
+// [variação mais fácil (Iniciante), variação mais difícil (Avançado), lastro opcional do Avançado em fração do peso corporal (0 = sem lastro), grupo]
+const VAR={
+"Flexão de braço":["Flexão inclinada (mãos no banco)","Flexão arqueiro (archer)",0,"peito"],
+"Mergulho nas paralelas (tronco inclinado, foco peito)":["Mergulho negativo (descida de 4 s) ou com elástico","Mergulho com pausa de 2 s embaixo",0.1,"peito"],
+"Flexão declinada (pés no banco)":["Flexão de braço no chão","Flexão declinada com pés em superfície mais alta",0.08,"peito"],
+"Flexão pike (foco ombros)":["Pike com quadril alto e joelhos levemente dobrados","Pike com pausa de 2 s embaixo",0,"ombros"],
+"Flexão diamante (foco tríceps)":["Flexão diamante com joelhos apoiados","Flexão diamante com pés no banco",0,"triceps"],
+"Mergulho no banco (tríceps)":["Mergulho no banco com joelhos dobrados","Mergulho no banco com pés elevados",0.08,"triceps"],
+"Barra fixa pegada pronada":["Barra fixa negativa (descida de 5 s) ou com elástico","Barra fixa com pausa de 2 s no topo",0.1,"costas"],
+"Barra fixa supinada (chin-up)":["Chin-up negativo (descida de 5 s) ou com elástico","Chin-up com pausa de 2 s no topo",0.1,"biceps"],
+"Remada invertida (barra baixa ou mesa firme)":["Remada invertida com joelhos dobrados","Remada invertida com pés elevados no banco",0.08,"costas"],
+"Retração escapular na barra fixa":["Retração escapular com os pés apoiados","Retração escapular com pausa de 3 s",0,"costas"],
+"Remada invertida supinada (foco bíceps)":["Pegada supinada com joelhos dobrados","Pegada supinada com pés no banco",0.08,"biceps"],
+"Superman (extensão lombar no chão)":["Superman alternando braço e perna oposta","Superman com pausa de 3 s no alto",0,"costas"],
+"Agachamento livre (peso do corpo)":["Agachamento até o banco, com apoio das mãos se precisar","Agachamento com pausa de 3 s embaixo",0.15,"coxa"],
+"Agachamento búlgaro (pé no banco)":["Afundo estático sem o pé no banco","Búlgaro com descida lenta (4 s)",0.15,"coxa"],
+"Avanço alternado (afundo)":["Avanço com apoio da mão na parede","Avanço com pausa de 2 s embaixo",0.15,"coxa"],
+"Agachamento isométrico na parede (cadeirinha)":["Cadeirinha mais alta (joelhos a ~120°)","Cadeirinha com uma perna estendida (alternando)",0,"coxa"],
+"Panturrilha em pé unilateral (degrau)":["Panturrilha em pé com as duas pernas","Unilateral com pausa de 2 s no alto",0.1,"pant"],
+"Flexão pike com pés no banco":["Pike com pés no chão","Pike com pés bem altos ou flexão invertida na parede (negativa)",0,"ombros"],
+"Isometria de pike (quadril alto, pés no banco)":["Pike isométrico com pés no chão","Parada de mão na parede (isometria)",0,"ombros"],
+"Elevação de pernas na barra fixa":["Elevação de joelhos na barra fixa","Elevação de pernas até a barra (toes to bar)",0,null],
+"Prancha frontal":["Prancha com joelhos apoiados","Prancha com cotovelos à frente da linha dos ombros",0,null],
+"Abdominal canivete (V-up)":["Canivete com joelhos dobrados","Canivete com pausa de 2 s no alto",0,null],
+"Prancha lateral":["Prancha lateral com joelho apoiado","Prancha lateral com elevação de quadril",0,null],
+"Barra fixa pegada aberta":["Barra fixa aberta negativa (descida de 5 s) ou com elástico","Barra fixa aberta com pausa de 2 s no topo",0.1,"costas"],
+"Flexão com pegada aberta":["Flexão aberta com joelhos apoiados","Flexão arqueiro (archer)",0,"peito"],
+"Mergulho nas paralelas (tronco ereto, foco tríceps)":["Mergulho negativo (descida de 4 s) ou com elástico","Mergulho com pausa de 2 s embaixo",0.1,"triceps"],
+"Remada invertida com pausa no topo":["Remada invertida com joelhos dobrados e pausa de 1 s","Remada invertida com pés elevados e pausa de 3 s",0.08,"costas"],
+"Flexão com uma mão no banco (assimétrica)":["Mesma flexão com joelhos apoiados","Mão do banco mais alta, com o peso sobre o lado fraco",0,"peito"],
+"Chin-up excêntrico (descida de 5 s)":["Descida de 3 s com apoio dos pés","Descida de 8 s",0.08,"biceps"],
+"Hip thrust no banco (peso do corpo)":["Ponte de glúteos no chão","Hip thrust unilateral",0.1,"coxa"],
+"Stiff unilateral (peso do corpo)":["Stiff com as duas pernas e apoio da mão","Stiff unilateral com descida lenta (4 s)",0.1,"coxa"],
+"Agachamento sumô (peso do corpo)":["Sumô com apoio das mãos","Sumô com pausa de 3 s embaixo",0.15,"coxa"],
+"Step-up no banco":["Step-up em degrau baixo","Step-up sem impulso da perna de trás, com descida lenta",0.15,"coxa"],
+"Panturrilha em pé (duas pernas, degrau)":["Panturrilha no chão","Panturrilha com pausa de 2 s no alto e descida lenta",0.1,"pant"],
+"Abdominal infra (elevação de quadril no chão)":["Elevação de joelhos deitado","Elevação de quadril com pernas estendidas e pausa de 2 s",0,null]};
+// fator do lastro para mulheres por grupo muscular (parte superior ≈55–60%, inferior ≈70% do lastro masculino)
+const FEM={peito:0.55,triceps:0.55,ombros:0.55,biceps:0.60,costas:0.60,coxa:0.70,pant:0.70};
+const MEAS={peito:['peito'],biceps:['bicepsD','bicepsE'],triceps:['tricepsD','tricepsE'],coxa:['coxaD','coxaE'],pant:['pantD','pantE'],ombros:['ombros'],costas:['peito']};
+// ajuste do lastro pela composição corporal: massa magra em relação à referência do sexo (85% homens, 78% mulheres)
+function leanFactor(){
+  const p=getPerfil(),bf=bodyFat(p);
+  if(!isFinite(bf))return 1;
+  return Math.min(1.15,Math.max(0.85,(1-bf/100)/(p.sexo==='f'?0.78:0.85)));
+}
+function growthFactor(g){
+  const H=L('hist',[]);if(H.length<2||!g)return 1;
+  const a=H[0],b=H[H.length-1],ks=MEAS[g]||[];
+  const va=ks.map(k=>a[k]).filter(isNum),vb=ks.map(k=>b[k]).filter(isNum);
+  if(va.length&&vb.length){const fa=va.reduce((x,y)=>x+y)/va.length,fb=vb.reduce((x,y)=>x+y)/vb.length;return 1+Math.min(Math.max(2*(fb-fa)/fa,0),0.3)}
+  if(isNum(a.lean)&&isNum(b.lean))return 1+Math.min(Math.max((b.lean-a.lean)/a.lean,0),0.2);
+  return 1;
+}
+const fkg=v=>String(v).replace('.',',');
+function loadTxt(name){
+  const t=VAR[name];if(!t)return'';
+  const lv=NIVN();
+  if(lv==='ini')return 'Variação: <b>'+t[0]+'</b> <small>· ao completar o topo das repetições, passe para a versão padrão</small>';
+  if(lv==='med')return 'Variação: <b>padrão</b> <small>· ao completar o topo das repetições em todas as séries, evolua para: '+t[1]+'</small>';
+  let s='Variação: <b>'+t[1]+'</b>';
+  if(t[2]>0){
+    const p=getPerfil(),kg=+p.peso;
+    if(!isNum(kg))return s+' <small>· informe seu peso no Perfil para ver o lastro sugerido</small>';
+    const base=kg*t[2]*leanFactor()*(p.sexo==='f'?(FEM[t[3]]||0.6):1);
+    const r=v=>v<5?Math.max(0.5,Math.round(v*2)/2):Math.round(v);
+    const b0=r(base),b1=r(base*growthFactor(t[3]));
+    s+=' · lastro opcional: <b>'+fkg(b1)+' kg</b> (mochila, colete ou halter)'+(b1>b0?' <span class="up">↑ +'+fkg(b1-b0)+' kg pela evolução</span>':'');
+  }
+  return s;
+}
+const parseDt=s=>{const m=String(s).match(/(\d+)\/(\d+)\/(\d+)/);return m?new Date(+m[3],+m[2]-1,+m[1]).getTime():NaN};
+function renderMeta(){
+  const el=$('metaIdeal');if(!el)return;
+  const H=L('hist',[]),p=L('perfil',{}),T='<h2>🎯 Meta ideal</h2>';
+  if(!H.length){el.innerHTML=T+'<div class="sub">Salve ao menos uma medição (com pescoço e cintura) para ver suas metas de massa magra e de gordura.</div>';return}
+  const b=H[H.length-1],men=(p.sexo||'m')!=='f',idade=+p.idade||30,h=(+p.altura||0)/100;
+  if(!isNum(b.peso)||!isNum(b.bf)||!h){el.innerHTML=T+'<div class="sub">Preencha altura, pescoço e cintura'+(men?'':' e quadril')+' no Perfil e salve uma nova medição.</div>';return}
+  const kg=b.peso,bf=b.bf,fat=isNum(b.fat)?b.fat:kg*bf/100,lean=isNum(b.lean)?b.lean:kg-fat,def=mode==='def';
+  const faixa=men?(def?[10,12]:[12,15]):(def?[18,21]:[21,25]),bfT=(faixa[0]+faixa[1])/2;
+  const navyMax=men?(idade<=20?22:idade<=27?23:idade<=39?24:26):(idade<=20?33:idade<=27?34:idade<=39?36:38);
+  const ffmi=lean/(h*h)+6.1*(1.8-h),ffT=men?22:18;
+  const leanT=Math.max((ffT-6.1*(1.8-h))*h*h,lean),wT=leanT/(1-bfT/100),fatT=wT-leanT;
+  const taxa={ini:0.010,med:0.005,avc:0.0025}[NIVN()],meses=(leanT-lean)/(kg*taxa),sem=Math.max(fat-fatT,0)/(kg*0.005);
+  const row=(n,a,m)=>{const d=m-a;return `<tr><td>${n}</td><td>${f(a)}</td><td>${f(m)}</td><td>${d>0?'+':''}${f(d)}</td></tr>`};
+  let h2=T+`<div class="sub">Base: sua última medição (${b.dt}). Faixa ideal de gordura: ${faixa[0]}–${faixa[1]}% · limite da Marinha dos EUA para sua idade: ${navyMax}%.</div>`;
+  h2+=`<table><tr><th></th><th>Atual</th><th>Meta</th><th>Falta</th></tr>${row('Massa magra (kg)',lean,leanT)}${row('Massa gorda (kg)',fat,fatT)}${row('Gordura (%)',bf,bfT)}${row('Peso (kg)',kg,wT)}</table>`;
+  h2+=`<div class="sub" style="margin-top:8px">FFMI atual: ${f(ffmi)} · meta ${ffT} (${men?'bom nível natural':'referência feminina'}).</div>`;
+  const tips=[];
+  if(leanT-lean>0.2)tips.push(`Massa magra: cerca de ${Math.max(1,Math.round(meses))} mês(es) no ritmo típico do seu nível (${f(taxa*100,2)}% do peso por mês).`);else tips.push('Massa magra: você já está na meta; foque em manter e em definir.');
+  if(fat-fatT>0.3)tips.push(`Gordura: cerca de ${Math.max(1,Math.round(sem))} semana(s) perdendo ~0,5% do peso por semana.`);else tips.push('Gordura: dentro da faixa ideal.');
+  tips.push(def?'Prioridade agora (definição): reduzir gordura mantendo a massa magra.':'Prioridade agora (ganho de massa): subir a massa magra mantendo a gordura abaixo de '+faixa[1]+'%.');
+  if(bf>navyMax)tips.push(`Atenção: sua gordura (${f(bf)}%) está acima do limite da Marinha dos EUA para sua idade (${navyMax}%).`);
+  if(H.length>1){
+    const a=H[0],d=(parseDt(b.dt)-parseDt(a.dt))/864e5;
+    if(d>=7&&isNum(a.lean)&&isNum(b.lean)&&isNum(a.fat)&&isNum(b.fat)){
+      const dl=(b.lean-a.lean)/d*30,df=(b.fat-a.fat)/d*30;
+      tips.push(`No seu ritmo: massa magra ${dl>0?'+':''}${f(dl)} kg/mês e gordura ${df>0?'+':''}${f(df)} kg/mês.`);
+      if(!def&&df>0.3&&df>dl)tips.push('Você ganha mais gordura que massa magra: reduza cerca de 100 kcal/dia do superávit.');
+      if(!def&&dl<=0&&d>=14)tips.push('Sem ganho de massa magra no período: aumente cerca de 150–200 kcal/dia e progrida as cargas.');
+      if(def&&dl<-0.2)tips.push('Você está perdendo massa magra: diminua o déficit (~100–150 kcal) e mantenha a proteína em 2,2 g/kg.');
+    }
+  }
+  h2+='<ul style="margin:8px 0 0;padding-left:18px;font-size:14px">'+tips.map(t=>'<li style="margin:4px 0">'+t+'</li>').join('')+'</ul>';
+  el.innerHTML=h2;
+}
+
+function renderEvol(){renderEvol0();renderMeta()}
+function renderMus(){
+  const m=SONGS[ms];
+  $('mus').innerHTML=`<div style="font-weight:600;margin-bottom:8px">${m[1]}</div><div class="row"><button class="btn" id="pY">▶ Tocar hit</button><button class="btn alt" style="background:none" id="pN">🔀 Outra</button></div><small>Toca aqui dentro do app, e você continua usando o treino. <a href="https://www.youtube.com/results?search_query=hits+music+for+calisthenics+workout" target="_blank" rel="noopener" style="color:var(--ac)">Mais hits para treinar</a></small>`;
+  $('pY').onclick=()=>{playSong(ms);ms=rnd(SONGS.length,ms);savePl();renderMus()};
+  $('pN').onclick=()=>{ms=rnd(SONGS.length,ms);savePl();renderMus()};
+}
+
+$('mMassa').onclick=()=>{mode='massa';P('mode',mode);renderTreino();calc()};
+$('mDef').onclick=()=>{mode='def';P('mode',mode);renderTreino();calc()};
+
+// Perfil
+$('meds').innerHTML=CAMPOS.map(c=>`<div><label>${c[1]}</label><input id="${c[0]}" type="number" inputmode="decimal" step="0.1"></div>`).join('');
+const IDS=['sexo','idade','altura','peso','ativ','nivel',...CAMPOS.map(c=>c[0])];
+const PARES=[['biceps','Bíceps'],['triceps','Tríceps'],['antebraco','Antebraço'],['coxa','Coxa'],['pant','Panturrilha']];
+const COR={
+biceps:{d:[1,4],t:'Faça chin-up e remada invertida supinada com descida lenta (4–5 s) e use a remada com uma mão só, começando pelo lado fraco; se tiver halter, inclua rosca unilateral.'},
+triceps:{d:[0,4],t:'Use flexão arqueiro e flexão com uma mão no banco, com o peso sobre o lado fraco, e mergulho no banco com mais repetições no lado fraco.'},
+antebraco:{d:[1,3],t:'Pendure-se na barra fixa 3x20-40 s (pegada pronada e supinada), com mais tempo no lado fraco usando a outra mão só como apoio leve; se tiver halter, faça rosca de punho unilateral.'},
+coxa:{d:[2,5],t:'Priorize agachamento búlgaro, avanço, step-up e stiff unilateral, começando sempre pelo lado fraco e com descida lenta.'},
+pant:{d:[2,5],t:'Faça panturrilha unilateral em degrau (em pé) e com o joelho dobrado, 4x12-15 no lado fraco.'}};
+let SIM=[];
+function renderSim(p){
+  SIM=[];
+  PARES.forEach(([k,n])=>{const a=+p[k+'D'],b=+p[k+'E'];if(!a||!b)return;const diff=a-b,pct=Math.abs(diff)/Math.max(a,b)*100;SIM.push({k,n,a,b,diff,pct,lvl:pct<2?0:pct<4?1:2,fraco:diff>0?'esquerdo':'direito'})});
+  const el=$('sim');
+  if(!SIM.length){el.innerHTML='<div class="sub">Preencha direito e esquerdo de um mesmo item para ver a análise e as correções de treino.</div>';return}
+  el.innerHTML=SIM.map(s=>{
+    const cor=s.lvl==0?'#2f9e44':s.lvl==1?'#f08c00':'#e03131';
+    const st=s.lvl==0?'Simétrico ✔':s.lvl==1?'Diferença leve':'Atenção';
+    let h=`<div style="border-left:4px solid ${cor};padding:6px 10px;margin:8px 0"><b>${s.n}</b>: D ${f(s.a)} · E ${f(s.b)} cm — diferença de ${f(Math.abs(s.diff))} cm (${f(s.pct)}%) <b style="color:${cor}">${st}</b>`;
+    if(s.lvl==0)h+='<br><small>Dentro do normal (até ~2%). Mantenha o treino atual.</small>';
+    else h+=`<br>Lado mais fraco: <b>${s.fraco}</b>. ${COR[s.k].t}<br><small>Regra: comece sempre pelo lado ${s.fraco}; no lado forte faça as mesmas repetições do lado fraco (sem passar disso) e acrescente 1 série extra só no lado fraco por 4–6 semanas.${s.lvl==2?' Se não houver melhora em 8 semanas, ou se sentir dor, procure um profissional.':''}${s.pct>10?' Diferença muito grande: confira se mediu no mesmo ponto, com o músculo relaxado.':''}</small>`;
+    return h+'</div>'}).join('');
+}
+function renderAj(){
+  const el=$('ajuste');
+  const l=SIM.filter(s=>s.lvl>0&&COR[s.k].d.includes(day));
+  if(!l.length){el.classList.add('hide');return}
+  el.classList.remove('hide');
+  el.innerHTML='<h2>⚖️ Correção de simetria para hoje</h2>'+l.map(s=>`<div style="margin:6px 0"><b>${s.n}</b>: o lado ${s.fraco} está ${f(Math.abs(s.diff))} cm menor. ${COR[s.k].t} Comece pelo lado ${s.fraco} e faça +1 série nele.</div>`).join('');
+}
+function loadPerfil(){const p=L('perfil',{});IDS.forEach(i=>{if(p[i]!=null&&p[i]!=='')$(i).value=p[i]})}
+function getPerfil(){const p={};IDS.forEach(i=>p[i]=$(i).value);return p}
+const f=(v,d=1)=>isFinite(v)?v.toFixed(d):'–';
+function bodyFat(p){
+  const h=+p.altura,n=+p.pescoco,c=+p.cintura,q=+p.quadril;
+  if(!h||!n||!c)return NaN;
+  if(p.sexo=='m'){if(c-n<=0)return NaN;return 495/(1.0324-0.19077*Math.log10(c-n)+0.15456*Math.log10(h))-450}
+  if(!q||c+q-n<=0)return NaN;
+  return 495/(1.29579-0.35004*Math.log10(c+q-n)+0.221*Math.log10(h))-450;
+}
+function calc(){
+  const p=getPerfil();P('perfil',p);renderSim(p);
+  const kg=+p.peso,h=+p.altura,a=+p.idade;
+  const R=$('res');
+  if(!kg||!h||!a){R.innerHTML='<div class="sub">Preencha idade, altura e peso.</div>';$('meta').textContent='';return}
+  const imc=kg/((h/100)**2);
+  const tmb=10*kg+6.25*h-5*a+(p.sexo=='m'?5:-161);
+  const get=tmb*(+p.ativ);
+  const bf=bodyFat(p),fat=kg*bf/100,lean=kg-fat;
+  const meta=mode=='massa'?get+300:get-450;
+  const prot=(mode=='massa'?2:2.2)*kg,gord=0.8*kg,carb=Math.max(0,(meta-prot*4-gord*9)/4);
+  const k=(t,v)=>`<div class="kpi"><small>${t}</small><b>${v}</b></div>`;
+  R.innerHTML=k('IMC',f(imc))+k('TMB (kcal)',Math.round(tmb))+k('Gasto diário (kcal)',Math.round(get))+k('Meta de calorias',Math.round(meta))+k('Gordura corporal',isFinite(bf)?f(bf)+'%':'preencha pescoço/cintura'+(p.sexo=='f'?'/quadril':''))+k('Massa magra',isFinite(bf)?f(lean)+' kg':'–')+k('Massa gorda',isFinite(bf)?f(fat)+' kg':'–')+k('Proteína / dia',Math.round(prot)+' g');
+  let t=`Macros sugeridos: ${Math.round(prot)} g proteína · ${Math.round(carb)} g carboidrato · ${Math.round(gord)} g gordura. `;
+  if(mode=='massa'){const ganho=kg*0.0025;t+=`Meta de 12 semanas: ≈ ${f(kg+ganho*12)} kg (+${f(ganho*12)} kg, cerca de 0,25% do peso por semana, priorizando massa magra).`}
+  else{const perda=kg*0.007;t+=`Meta de 12 semanas: ≈ ${f(kg-perda*12)} kg (−${f(perda*12)} kg, cerca de 0,7% por semana). Déficit de ~450 kcal/dia ≈ ${f(450*7/7700,2)} kg de gordura por semana.`;if(isFinite(bf)){t+=` Gordura-alvo estimada: ${f(Math.max(bf-4,p.sexo=='m'?8:16))}%.`}}
+  $('meta').textContent=t+' (estimativas; ajuste conforme a balança e a fita a cada 2 semanas).';
+}
+IDS.forEach(i=>$(i).addEventListener('input',()=>{calc();renderTreino()}));
+$('save').onclick=()=>{
+  const p=getPerfil();if(!+p.peso){alert('Informe o peso.');return}
+  const bf=bodyFat(p),kg=+p.peso;
+  const H=L('hist',[]);
+  H.push({dt:new Date().toLocaleDateString('pt-BR'),peso:kg,bf:bf,fat:kg*bf/100,lean:kg-kg*bf/100,...Object.fromEntries(CAMPOS.map(c=>[c[0],+p[c[0]]||null]))});
+  P('hist',H);renderEvol();alert('Medição salva! Veja na aba Evolução.');
+};
+
+// Evolução
+function renderEvol0(){
+  const H=L('hist',[]);
+  if(!H.length){$('evol').innerHTML='<div class="sub">Nenhuma medição salva ainda. Preencha o Perfil e toque em “Salvar medição de hoje”.</div>';return}
+  const a=H[0],b=H[H.length-1];
+  const rows=[['peso','Peso (kg)',0],['bf','Gordura (%)',0],['fat','Massa gorda (kg)',0],['lean','Massa magra (kg)',1],...CAMPOS.map(c=>[c[0],c[1],c[0]=='cintura'||c[0]=='abdomen'?0:1])];
+  const body=rows.map(r=>{
+    const x=a[r[0]],y=b[r[0]];if(!isFinite(x)||x==null||!isFinite(y)||y==null)return'';
+    const d=y-x,good=r[2]?d>0:d<0,cls=Math.abs(d)<0.05?'':good?'up':'dn';
+    return `<tr><td>${r[1]}</td><td>${f(x)}</td><td>${f(y)}</td><td class="${cls}">${d>0?'+':''}${f(d)}</td></tr>`}).join('');
+  $('evol').innerHTML=`<div class="sub">${H.length} medição(ões) · de ${a.dt} até ${b.dt}</div><table><tr><th></th><th>Início</th><th>Atual</th><th>Δ</th></tr>${body}</table>`;
+}
+$('clr').onclick=()=>{if(confirm('Apagar todo o histórico de medições?')){P('hist',[]);renderEvol()}};
+
+// Abas
+document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('nav button').forEach(x=>x.classList.toggle('on',x==b));
+  ['treino','perfil','evol','sobre'].forEach(t=>$('t-'+t).classList.toggle('hide',t!=b.dataset.t));
+  window.scrollTo(0,0);
+});
+$('mNext').onclick=()=>{if(kind==='hit')playHit(rnd(HITS.length,curH));else playSong(rnd(SONGS.length,curS))};
+$('mClose').onclick=()=>{try{if(YP&&YP.stopVideo)YP.stopVideo()}catch(e){}$('mini').classList.add('hide');pos()};
+window.addEventListener('resize',pos);
+
+loadPerfil();calc();renderTreino();renderEvol();pos();
+
+// ===== Login e sincronização (Firebase) =====
+const SYNCK=['perfil','hist','done','mode','player'];
+const FBV='10.12.2';
+let FA=null,FS=null,UID=null,unsubSnap=null,bootDone=false,applying=false,dirty=new Set(),pushT=null,lgMode='in';
+const cfg=()=>window.TF_FIREBASE||(typeof firebaseConfig!=='undefined'?firebaseConfig:null);
+const fbOk=()=>{const c=cfg();return !!(c&&c.apiKey&&c.projectId&&!/COLE_AQUI/.test(c.apiKey)&&c.projectId!=='SEU-PROJETO')};
+function cfgDiag(){
+  const c=cfg();
+  if(window.__cfgMiss)return'Diagnóstico: o arquivo firebase-config.js não foi encontrado no site.';
+  if(window.__cfgErr)return'Diagnóstico: o firebase-config.js tem um erro ('+window.__cfgErr+'). Use o modelo do arquivo e troque só os valores entre aspas; não cole linhas com import.';
+  if(!c)return'Diagnóstico: o firebase-config.js carregou, mas não define window.TF_FIREBASE.';
+  const f=['apiKey','projectId','appId'].filter(k=>!c[k]);
+  if(f.length)return'Diagnóstico: faltam campos no firebase-config.js: '+f.join(', ')+'.';
+  if(/COLE_AQUI/.test(c.apiKey||'')||c.projectId==='SEU-PROJETO')return'Diagnóstico: o arquivo ainda tem os valores de exemplo (COLE_AQUI / SEU-PROJETO).';
+  return'';
+}
+function savePl(){P('player',{ms,hi})}
+function syncHook(k){
+  if(!bootDone||applying||SYNCK.indexOf(k)<0)return;
+  const t=L('sync_t',{});t[k]=Date.now();LS.setItem('sync_t',JSON.stringify(t));
+  dirty.add(k);if(UID){clearTimeout(pushT);pushT=setTimeout(pushNow,800)}
+}
+function setSync(t){const e=$('lgSync');if(e)e.textContent=t}
+async function pushNow(){
+  if(!UID||!FS||!dirty.size)return;
+  const ks=[...dirty];dirty.clear();const t=L('sync_t',{}),data={},tt={};
+  ks.forEach(k=>{const v=LS.getItem(k);if(v!=null){data[NS+k]=v;tt[NS+k]=t[k]||Date.now()}});
+  try{await FS.collection('users').doc(UID).set({data,t:tt},{merge:true});setSync('✔ Sincronizado às '+new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'}))}
+  catch(e){ks.forEach(k=>dirty.add(k));setSync('⚠️ Sem conexão. Vou tentar de novo.');clearTimeout(pushT);pushT=setTimeout(pushNow,8000)}
+}
+function refreshUI(){
+  applying=true;
+  try{
+    mode=L('mode','massa');done=L('done',{});
+    const pl=L('player',null);if(pl){if(pl.ms>=0&&pl.ms<SONGS.length)ms=pl.ms;if(pl.hi>=0&&pl.hi<HITS.length)hi=pl.hi}
+    loadPerfil();calc();renderTreino();renderEvol();
+  }finally{applying=false}
+}
+function startSync(){
+  if(unsubSnap)unsubSnap();
+  const ref=FS.collection('users').doc(UID);
+  unsubSnap=ref.onSnapshot(snap=>{
+    if(snap.metadata.hasPendingWrites)return;
+    const d=snap.exists?snap.data():{},rd=d.data||{},rt=d.t||{},lt=L('sync_t',{});let changed=false;
+    SYNCK.forEach(k=>{
+      const ck=NS+k,r=rt[ck]||0,l=lt[k]||0;
+      if(rd[ck]!=null&&r>l){applying=true;try{LS.setItem(k,rd[ck]);lt[k]=r;changed=true}finally{applying=false}}
+      else if(LS.getItem(k)!=null&&l>=r&&(l>r||rd[ck]==null)){if(!l){lt[k]=Date.now()}dirty.add(k)}
+    });
+    LS.setItem('sync_t',JSON.stringify(lt));
+    if(changed)refreshUI();
+    if(dirty.size){clearTimeout(pushT);pushT=setTimeout(pushNow,300)}else setSync('✔ Sincronizado às '+new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'}));
+  },e=>setSync('⚠️ Erro de sincronização: '+e.message));
+}
+function loadScript(src){return new Promise((res,rej)=>{const t=document.createElement('script');t.src=src;t.onload=res;t.onerror=rej;document.head.appendChild(t)})}
+async function initFB(){
+  if(FA)return true;if(!fbOk())return false;
+  try{
+    const b='https://www.gstatic.com/firebasejs/'+FBV+'/';
+    await loadScript(b+'firebase-app-compat.js');await loadScript(b+'firebase-auth-compat.js');await loadScript(b+'firebase-firestore-compat.js');
+    firebase.initializeApp(cfg());FA=firebase.auth();FS=firebase.firestore();
+    FA.onAuthStateChanged(onAuth);FA.getRedirectResult().catch(()=>{});
+    return true;
+  }catch(e){return false}
+}
+function userName(u){if(!u)return'';if(u.email&&/@treinoforte\.app$/.test(u.email))return u.email.split('@')[0];return u.displayName||(u.email?u.email.split('@')[0]:'usuário')}
+function onAuth(u){
+  UID=u?u.uid:null;
+  $('lgBtn').textContent=u?'👤 '+userName(u):'Login';
+  if(unsubSnap){unsubSnap();unsubSnap=null}
+  if(u){startSync();$('lgName').textContent=userName(u);setSync('Sincronizando...');showLg('in')}else{showLg('form')}
+}
+function showLg(v){
+  $('lgSetup').classList.toggle('hide',v!=='setup');$('lgForm').classList.toggle('hide',v!=='form');$('lgIn').classList.toggle('hide',v!=='in');
+  $('lgTitle').textContent=v==='in'?'Minha conta':'Login';
+}
+function msg(t,ok){const e=$('lgMsg');e.textContent=t||'';e.className=ok?'ok2':'err'}
+const okPass=p=>p.length>=8&&/[A-Z]/.test(p)&&/[a-z]/.test(p)&&/[0-9]/.test(p)&&/[^A-Za-z0-9]/.test(p);
+const okUser=u=>/^[a-z0-9._-]{3,20}$/.test(u);
+function errTxt(e){
+  const c=e&&e.code||'';
+  if(c==='auth/email-already-in-use')return'Este e-mail já tem conta. Use "Entrar" ou "Esqueci minha senha".';
+  if(c==='auth/invalid-email')return'E-mail inválido.';
+  if(c==='auth/weak-password')return'Senha muito fraca.';
+  if(/user-not-found|invalid-credential|wrong-password|invalid-login/.test(c))return'Usuário ou senha incorretos.';
+  if(c==='auth/operation-not-allowed')return'Ative este tipo de login no Firebase (Authentication).';
+  if(c==='auth/network-request-failed')return'Sem conexão com a internet.';
+  if(c==='auth/too-many-requests')return'Muitas tentativas. Espere um pouco e tente de novo.';
+  if(c==='auth/unauthorized-domain')return'Este site não está autorizado no Firebase (Authentication → Domínios autorizados).';
+  if(c==='auth/popup-closed-by-user')return'Login cancelado.';
+  return (e&&e.message)||'Não foi possível entrar.';
+}
+async function openLg(){
+  $('lg').classList.remove('hide');msg('');
+  if(!fbOk()){$('lgDiag').textContent=cfgDiag();showLg('setup');return}
+  showLg(UID?'in':'form');
+  if(!FA){msg('Carregando...',true);const ok=await initFB();msg(ok?'':'Não consegui carregar o login (verifique a internet).');}
+}
+$('lgBtn').onclick=openLg;
+$('lgX').onclick=()=>$('lg').classList.add('hide');
+const okMail=e=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
+function setTab(m){
+  lgMode=m;const n=m==='new';
+  $('tNew').className=n?'on':'';$('tIn').className=n?'':'on';
+  $('lgGo').textContent=n?'Criar conta':'Entrar';$('lgPass').autocomplete=n?'new-password':'current-password';
+  $('lgNickBox').classList.toggle('hide',!n);$('lgForgotBox').classList.toggle('hide',n);
+  $('lgUserLbl').textContent=n?'E-mail (para recuperar a senha)':'E-mail ou usuário';
+  $('lgUser').placeholder='seu@gmail.com';msg('');
+}
+$('tIn').onclick=()=>setTab('in');
+$('tNew').onclick=()=>setTab('new');
+$('lgGo').onclick=async()=>{
+  if(!FA&&!(await initFB())){msg('Login indisponível agora.');return}
+  const raw=$('lgUser').value.trim().toLowerCase(),pw=$('lgPass').value;
+  if(lgMode==='new'){
+    const nick=$('lgNick').value.trim();
+    if(nick.length<2||nick.length>20){msg('Apelido: de 2 a 20 caracteres.');return}
+    if(!okMail(raw)||/@treinoforte\.app$/.test(raw)){msg('Digite um e-mail válido (ex.: seunome@gmail.com).');return}
+    if(!okPass(pw)){msg('Senha fraca: use no mínimo 8 caracteres com maiúscula, minúscula, número e caractere especial.');return}
+    msg('Aguarde...',true);
+    try{const c=await FA.createUserWithEmailAndPassword(raw,pw);try{await c.user.updateProfile({displayName:nick})}catch(x){}$('lgPass').value='';msg('')}
+    catch(e){msg(errTxt(e))}
+    return;
+  }
+  if(!raw||!pw){msg('Digite o e-mail (ou usuário) e a senha.');return}
+  const email=raw.indexOf('@')>-1?raw:raw+'@treinoforte.app';
+  msg('Aguarde...',true);
+  try{await FA.signInWithEmailAndPassword(email,pw);$('lgPass').value='';msg('')}
+  catch(e){msg(errTxt(e))}
+};
+$('lgForgot').onclick=async()=>{
+  if(!FA&&!(await initFB())){msg('Login indisponível agora.');return}
+  const raw=$('lgUser').value.trim().toLowerCase();
+  if(raw.indexOf('@')<0||!okMail(raw)){msg('Digite seu e-mail no campo acima. Contas antigas criadas só com usuário não têm recuperação de senha.');return}
+  if(/@treinoforte\.app$/.test(raw)){msg('Contas antigas criadas só com usuário não têm recuperação de senha.');return}
+  msg('Enviando...',true);
+  try{await FA.sendPasswordResetEmail(raw);msg('✔ Se existir uma conta com '+raw+', enviamos o link para redefinir a senha. Veja também a caixa de spam.',true)}
+  catch(e){msg(errTxt(e))}
+};
+$('lgGoogle').onclick=async()=>{
+  if(!FA&&!(await initFB())){msg('Login indisponível agora.');return}
+  const pr=new firebase.auth.GoogleAuthProvider();msg('Aguarde...',true);
+  try{await FA.signInWithPopup(pr);msg('')}
+  catch(e){
+    if(/popup-blocked|operation-not-supported|web-storage-unsupported/.test(e.code||'')){try{await FA.signInWithRedirect(pr);return}catch(x){e=x}}
+    msg(errTxt(e));
+  }
+};
+
+const isGoogle=u=>!!(u&&u.providerData&&u.providerData.some(p=>p.providerId==='google.com'));
+function delReset(){$('lgDel').classList.add('hide');$('lgDelBtn').classList.remove('hide');$('lgDelPass').value='';$('lgDelLocal').checked=false}
+$('lgDelBtn').onclick=()=>{const u=FA&&FA.currentUser;if(!u)return;const g=isGoogle(u);$('lgDelPw').classList.toggle('hide',g);$('lgDelG').classList.toggle('hide',!g);$('lgDel').classList.remove('hide');$('lgDelBtn').classList.add('hide');msg('')};
+$('lgDelNo').onclick=()=>{delReset();msg('')};
+$('lgDelGo').onclick=async()=>{
+  const u=FA&&FA.currentUser;if(!u)return;
+  msg('Aguarde...',true);
+  try{
+    if(isGoogle(u))await u.reauthenticateWithPopup(new firebase.auth.GoogleAuthProvider());
+    else{const pw=$('lgDelPass').value;if(!pw){msg('Digite a senha para confirmar.');return}await u.reauthenticateWithCredential(firebase.auth.EmailAuthProvider.credential(u.email,pw))}
+  }catch(e){msg(errTxt(e));return}
+  const uid=u.uid,limpar=$('lgDelLocal').checked;
+  if(unsubSnap){unsubSnap();unsubSnap=null}dirty.clear();clearTimeout(pushT);UID=null;
+  try{await FS.collection('users').doc(uid).delete()}
+  catch(e){UID=uid;startSync();msg('Não consegui apagar os dados da nuvem: '+errTxt(e));return}
+  try{await u.delete()}
+  catch(e){UID=uid;startSync();msg('Os dados da nuvem foram apagados, mas não consegui excluir a conta: '+errTxt(e));return}
+  try{LS.removeItem('sync_t');if(limpar)['perfil','hist','done','mode','player'].forEach(k=>LS.removeItem(k))}catch(e){}
+  delReset();
+  if(limpar){location.reload();return}
+  msg('✔ Conta excluída. Os dados continuam neste aparelho.',true);
+};
+$('lgOut').onclick=async()=>{if(FA)await FA.signOut();$('lg').classList.add('hide')};
+if(fbOk())initFB();
+
+setTimeout(()=>{bootDone=true},1500);
+</script>
+<script>
+if("serviceWorker" in navigator&&/^https?:/.test(location.protocol)){
+  navigator.serviceWorker.addEventListener("controllerchange",()=>{if(!window.__rl){window.__rl=1;location.reload()}});
+  navigator.serviceWorker.register("sw.js").then(r=>{try{r.update()}catch(e){}}).catch(()=>{});
+}
+</script>
+</body>
+</html>
