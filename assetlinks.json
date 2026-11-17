@@ -1,0 +1,14 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "br.com.ivan.treinocalistenia",
+      "sha256_cert_fingerprints": [
+        "5A:C0:C9:D9:A4:94:C8:BF:51:6B:3A:A7:89:C2:4B:CE:1E:AF:01:8D:9F:17:B0:62:65:14:77:D1:99:73:D4:68"
+      ]
+    }
+  }
+]
